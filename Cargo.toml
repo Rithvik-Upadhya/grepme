@@ -1,0 +1,12 @@
+[package]
+name = "grepme"
+version = "0.1.0"
+authors = ["Rithvik Upadhya"]
+readme = "README.md"
+description = "Grep with support for advanced regex features and automatic directory recursion."
+edition = "2024"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+colored = "3.1.1"
+fancy-regex = "0.18.0"
