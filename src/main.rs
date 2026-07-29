@@ -8,8 +8,18 @@ use grepme::{ExpansionFailed, search, targets};
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    if args.len() == 1 || args[1].eq("--help") || args[1].eq("-h") {
+    if args.len() == 2 && (args[1].eq("--help") || args[1].eq("-h")) {
         println!("{HELPTEXT}");
+        process::exit(0);
+    }
+
+    if args.len() == 2 && (args[1].eq("--version") || args[1].eq("-v")) {
+        println!(
+            "{} {}{}",
+            env!("CARGO_PKG_NAME"),
+            "v".green().bold(),
+            env!("CARGO_PKG_VERSION").green().bold(),
+        );
         process::exit(0);
     }
 

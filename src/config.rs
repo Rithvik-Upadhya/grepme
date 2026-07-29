@@ -68,8 +68,14 @@ impl Config {
             } else if flag.eq("-o") || flag.eq("--output-file") {
                 current_index += 1; // the next arg is the output file path
                 output_file = Some(args[current_index].clone());
+            } else if flag.eq("-v") || flag.eq("--version") {
+                return Err(format!(
+                    "the {flag} flag can only be called by itself."
+                ));
             } else if flag.eq("-h") || flag.eq("--help") {
-                return Err(format!("the {flag} can only be used by itself."));
+                return Err(format!(
+                    "the {flag} flag can only be called by itself."
+                ));
             } else {
                 return Err(
                     "unrecogonised flag passed\nRun `grepme --help` to see available flags."
@@ -99,13 +105,48 @@ impl Config {
 
 /// The text printed for `grepme --help` / `grepme -h` (or when no arguments
 /// are supplied).
-pub const HELPTEXT: &str = "\
-Usage: grepme [arguments] query [paths/glob]
+#[cfg(unix)]
+pub const HELPTEXT: &str = concat!(
+    "\n",
+    env!("CARGO_PKG_NAME"),
+    " v",
+    env!("CARGO_PKG_VERSION"),
+    " by ",
+    env!("CARGO_PKG_AUTHORS"),
+    " - ",
+    env!("CARGO_PKG_LICENSE"),
+    "\n\n",
+    env!("CARGO_PKG_DESCRIPTION"),
+    "\n\n",
+    "Usage:\n  grepme [arguments] query [paths/glob]\n\n",
+    "Arguments:\n",
+    "  --ignore-case | -i           Performs case-insensitive search\n",
+    "  --output-file | -o <file>    Writes stdout to file\n",
+    "      --version | -v           Shows the version number\n",
+    "         --help | -h           Shows this help text\n\n",
+    "Query:\n  can be any plain unquoted string or a quoted regex pattern.\n\n",
+    "Paths:\n  space separated list of files, directories, and/or glob patters.\n",
+);
 
-Query can be any plain unquoted string or a quoted regex pattern.
-
-Arguments:
-
---help / -h                        Shows this help text
---ignore-case / -i                 Performs case-insensitive search
---output-file / -o <filepath>      Writes stdout to file";
+#[cfg(not(unix))]
+pub const HELPTEXT: &str = concat!(
+    "\n",
+    env!("CARGO_PKG_NAME"),
+    " v",
+    env!("CARGO_PKG_VERSION"),
+    " by ",
+    env!("CARGO_PKG_AUTHORS"),
+    " - ",
+    env!("CARGO_PKG_LICENSE"),
+    "\n\n",
+    env!("CARGO_PKG_DESCRIPTION"),
+    "\n\n",
+    "Usage:\n  grepme [arguments] query [paths]\n\n",
+    "Arguments:\n",
+    "  --ignore-case | -i           Performs case-insensitive search\n",
+    "  --output-file | -o <file>    Writes stdout to file\n",
+    "      --version | -v           Shows the version number\n",
+    "         --help | -h           Shows this help text\n\n",
+    "Query:\n  can be any plain unquoted string or a quoted regex pattern.\n\n",
+    "Paths:\n  space separated list of files and directories.\n",
+);

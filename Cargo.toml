@@ -1,6 +1,6 @@
 [package]
 name = "grepme"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Rithvik Upadhya"]
 description = "Grep with support for advanced regex features and automatic directory recursion."
 readme = "README.md"
