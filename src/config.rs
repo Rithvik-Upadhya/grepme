@@ -106,6 +106,6 @@ Query can be any plain unquoted string or a quoted regex pattern.
 
 Arguments:
 
---help / -h\tShows this help text
---ignore-case / -i\tPerforms case-insensitive search
---output-file / -o <filepath>\tWrites stdout to file";
+--help / -h                        Shows this help text
+--ignore-case / -i                 Performs case-insensitive search
+--output-file / -o <filepath>      Writes stdout to file";
