@@ -2,8 +2,11 @@
 name = "grepme"
 version = "0.1.0"
 authors = ["Rithvik Upadhya"]
-readme = "README.md"
 description = "Grep with support for advanced regex features and automatic directory recursion."
+readme = "README.md"
+repository = "https://github.com/Rithvik-Upadhya/grepme"
+keywords = ["cli", "grep", "search", "recursive"]
+categories = ["command-line-utilities"]
 edition = "2024"
 license = "MIT OR Apache-2.0"
 
